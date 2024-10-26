@@ -1,16 +1,18 @@
-import sys
-from pathlib import Path
-from playsound import playsound
+import flet as ft
+from app.modules.frontend.SoundApp import SoundApp
 
-from app.modules.backend.tools import get_animal_sound_file, get_animal_from_json
-from config import ANIMAL_SOUNDS_DICT
 
-animal = get_animal_from_json(json_file=Path("./app/source/jsons/file.json"))
+def main(page: ft.Page):
+    page.window.width = 1000
+    page.window.height = 250
+    page.window.resizable = False
+    page.horizontal_alignment = ft.MainAxisAlignment.CENTER
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-animal_sound = ANIMAL_SOUNDS_DICT.get(animal)
+    sound_app = SoundApp()
 
-if not (sound_file := get_animal_sound_file(animal_sound=animal_sound)):
-    sys.exit()
+    page.add(sound_app)
 
-# print(sound_file)
-playsound(sound_file)
+
+if __name__ == '__main__':
+    ft.app(main)
