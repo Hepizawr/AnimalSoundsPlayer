@@ -9,7 +9,6 @@ def get_animal_sound_path(animal: str) -> str | None:
     if animal_sound := ANIMAL_SOUNDS_DICT.get(animal):
         for sound_format in SOUND_FORMATS:
             sound_file = os.path.join(SOUNDS_DIR, (animal_sound + sound_format))
-            print(sound_file)
             if os.path.exists(sound_file):
                 return sound_file
     return None
